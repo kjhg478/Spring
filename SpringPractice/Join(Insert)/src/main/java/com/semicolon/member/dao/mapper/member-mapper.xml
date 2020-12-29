@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="Member">
+ 	<insert id="insertDB" parameterType="Member">
+ 		INSERT INTO SMEMBER(MID, MPWD, MNAME, MPHONE, MEMAIL, MBIRTH) VALUES(#{mid}, #{mpassword}, #{mname}, #{mphone}, #{memail}, #{mbirth})
+ 	</insert> 
+<!-- 	<select id ="selectDB" resultType="String">
+		SELECT * FROM TESTTABLE
+	</select>
+	
+	<insert id="insertDB2" parameterType= "test">
+		INSERT INTO TESTTABLE(COL1, COL2) VALUES(#{param1}, #{param2})
+	</insert> -->
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
