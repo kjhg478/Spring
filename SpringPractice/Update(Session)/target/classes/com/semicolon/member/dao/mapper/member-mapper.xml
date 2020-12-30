@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="Member">
+ 	<insert id="insertDB" parameterType="Member">
+ 		INSERT INTO SMEMBER(MID, MPWD, MNAME, MPHONE, MEMAIL, MBIRTH) VALUES(#{mid}, #{mpwd}, #{mname}, #{mphone}, #{memail}, #{mbirth})
+ 	</insert> 
+ 	<select id="selectDB" parameterType="Member" resultType="int">
+ 		SELECT COUNT(*) FROM SMEMBER WHERE MID = #{mid} AND MPWD = #{mpwd}
+ 	</select>
+ 	 	<select id="selectDB2" parameterType="Member" resultType="Member">
+ 		SELECT * FROM SMEMBER WHERE MID = #{mid} AND MPWD = #{mpwd}
+ 	</select>
+ 	<select id="selectList" parameterType="Member" resultType="Member">
+ 		SELECT * FROM SMEMBER
+ 	</select>
+ 	 <select id="memberView" parameterType="String" resultType="Member">
+ 		SELECT * FROM SMEMBER WHERE MID = #{view}
+ 	</select>
+ 	 <delete id="memberDelete" parameterType="String" resultType="int">
+ 		DELETE FROM SMEMBER WHERE MID = #{view}
+ 	</delete>
+	 <select id="memberInfo" parameterType="String" resultType="Member">
+ 		SELECT * FROM SMEMBER WHERE MID = #{view}
+ 	</select>
+ 	<update id="memberUpdate" parameterType="member">
+		UPDATE SMEMBER SET MPWD=#{mpwd},MNAME=#{mname},MPHONE=#{mphone},MEMAIL=#{memail},MBIRTH=#{mbirth} WHERE MID=#{mid}	
+	</update>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
