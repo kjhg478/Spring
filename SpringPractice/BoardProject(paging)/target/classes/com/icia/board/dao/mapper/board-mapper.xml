@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="board"> 
+ 	<insert id="insertDB" parameterType="board">
+ 		INSERT INTO BOARDTABLE VALUES(DANNUM.NEXTVAL,#{bwriter},#{bpwd},#{btitle},#{bcontents},SYSDATE,0)
+ 	</insert>
+ 	 <insert id="writefile" parameterType="board">
+ 		INSERT INTO BOARDTABLE VALUES(DANNUM.NEXTVAL,#{bwriter},#{bpwd},#{btitle},#{bcontents},SYSDATE,0,#{bfilename})
+ 	</insert>
+ 	 <select id="selectDB" parameterType="board" resultType = "board">
+ 		SELECT * FROM BOARDTABLE
+ 	</select>
+ 	<update id="writeview" parameterType="board" >
+ 			UPDATE BOARDTABLE SET BHITS = BHITS+1 WHERE BNUM = #{bnum}
+ 		<selectKey keyProperty="bnum,bwriter,bpwd,btitle,bcontents,bdate,bhits,bfilename" order="AFTER" resultType="board">
+ 			SELECT * FROM BOARDTABLE WHERE BNUM = #{bnum}
+ 		</selectKey>
+ 	
+ 	</update>
+ 	<select id="writeupdate" parameterType="board" resultType ="board">
+ 		SELECT * FROM BOARDTABLE WHERE BNUM = #{bnum}
+ 	</select>
+ 	<update id="writemodify" parameterType="board">
+ 		UPDATE BOARDTABLE SET BTITLE = #{btitle}, BPWD = #{bpwd}, BCONTENTS = #{bcontents} WHERE BNUM = #{bnum}
+ 	
+ 	</update>
+ 	<delete id="writedelete" parameterType="board">
+ 		DELETE BOARDTABLE WHERE BNUM = #{bnum}
+ 	</delete>
+ 	<select id="listcount" resultType="int">
+ 		SELECT COUNT(BNUM) FROM BOARDTABLE
+ 	</select>
+ 	<select id="listpaging" parameterType="page" resultType="board">
+ 		SELECT * FROM (SELECT B.*, ROW_NUMBER() OVER(ORDER BY BNUM DESC) AS RN FROM BOARDTABLE B) WHERE RN BETWEEN #{startRow} AND #{endRow} 	
+ 	</select> 
+ </mapper>
