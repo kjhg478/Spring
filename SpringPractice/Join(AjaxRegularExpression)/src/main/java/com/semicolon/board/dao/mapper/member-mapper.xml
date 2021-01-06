@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="Member"> 
+	<select id="memberLogin" parameterType="member" resultType="int">
+		SELECT COUNT(*) FROM KJH_MEMBER WHERE STUID = #{stuid} AND STUPW = #{stupw}
+	</select>
+	<insert id="memberJoin" parameterType="member">
+		INSERT INTO KJH_MEMBER VALUES(#{stuid}, #{stupw}, #{stuname}, #{groupno})
+	</insert>
+	<select id="idcheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM KJH_MEMBER WHERE STUID = #{stuid}
+	</select>
+ </mapper>
