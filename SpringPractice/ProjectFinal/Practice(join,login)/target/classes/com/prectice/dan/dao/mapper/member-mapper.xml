@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="member"> 
+ 
+	<select id="checkid" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM DHSUSER WHERE "UID" = #{uid}
+	</select>
+	
+	<insert id="regMember" parameterType="member-bean">
+		INSERT INTO DHSUSER("UID",UPWD,UNAME,UGENDER,UBIRTH,UEMAIL,UADD,UPHONE,UPROFILE) 
+		VALUES(#{uid},#{upwd},#{uname},#{ugender},#{ubirth},#{uemail},#{uadd},#{uphone},#{uprofilename}) 
+	</insert>
+	
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
